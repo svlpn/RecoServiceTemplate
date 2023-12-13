@@ -118,8 +118,8 @@ async def get_reco(
         reco = random.sample(range(0, 10), 10)
     elif model_name == 'knn':
         reco = userknn.predict(pd.DataFrame([user_id], columns=['user_id']), N_recs=10)['item_id'].tolist()
-    elif model_name == "ALS":
-        reco = get_recommendations_from_csv(user_id)[:10]
+    elif model_name == "dssm":
+        reco = get_recommendations_from_csv(user_id, 'dssm.csv')
         seen = set(reco)
         additional_recommendations = [10440, 15297, 9728, 13865, 4151, 3734, 2657, 4880, 142, 6809]
         for recommendation in additional_recommendations:
