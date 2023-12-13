@@ -126,6 +126,22 @@ async def get_reco(
             if len(reco) < 10 and recommendation not in seen:
                 reco.append(recommendation)
                 seen.add(recommendation)
+    elif model_name == "ae":
+        reco = get_recommendations_from_csv(user_id, 'ae.csv')
+        seen = set(reco)
+        additional_recommendations = [10440, 15297, 9728, 13865, 4151, 3734, 2657, 4880, 142, 6809]
+        for recommendation in additional_recommendations:
+            if len(reco) < 10 and recommendation not in seen:
+                reco.append(recommendation)
+                seen.add(recommendation)
+    elif model_name == "multi_vae":
+        reco = get_recommendations_from_csv(user_id, 'multi_vae.csv')
+        seen = set(reco)
+        additional_recommendations = [10440, 15297, 9728, 13865, 4151, 3734, 2657, 4880, 142, 6809]
+        for recommendation in additional_recommendations:
+            if len(reco) < 10 and recommendation not in seen:
+                reco.append(recommendation)
+                seen.add(recommendation)
     else:
         k_recs = request.app.state.k_recs
         reco = list(range(k_recs))
